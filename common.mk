@@ -481,8 +481,13 @@ PRODUCT_COPY_FILES += \
 
 # Vibrator
 ifneq ($(TARGET_IS_TABLET),true)
+PRODUCT_PACKAGES += \
+    vendor.qti.hardware.vibrator.service
+
 PRODUCT_COPY_FILES += \
     vendor/qcom/opensource/vibrator/excluded-input-devices.xml:$(TARGET_COPY_OUT_VENDOR)/etc/excluded-input-devices.xml
+
+$(call soong_config_set_bool,qti_vibrator,use_effect_stream,true)
 endif
 
 # VINTF
